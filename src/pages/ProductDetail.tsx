@@ -39,7 +39,7 @@ const ProductDetail: React.FC = () => {
   };
 
   if (!product) {
-    return <div className="single-loading">Yuklanmoqda...</div>; 
+    return <div className="loader"></div>; 
   }
 
   return (

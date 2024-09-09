@@ -37,6 +37,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     setLiked(!liked); 
   };
 
+  if (!product) {
+    return <div className="loader"></div>;
+  }
+
   return (
     <div className="product-card">
       <div className="product-image">

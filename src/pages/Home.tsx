@@ -16,7 +16,7 @@ const Home: React.FC = () => {
   }, [dispatch]);
 
   if (!products.length || !categories.length) {
-    return <div>Loading...</div>;
+    return <div className="loader"></div>;
   }
 
   const groupedProducts = categories.reduce<Record<string, Product[]>>((acc, category) => {
