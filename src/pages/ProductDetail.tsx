@@ -20,24 +20,26 @@ const ProductDetail: React.FC = () => {
         const response = await axios.get<Product>(`http://makeup-api.herokuapp.com/api/v1/products/${id}.json`);
         setProduct(response.data);
       } catch (error) {
-        console.error('Error fetching product details:', error);
+        console.error('Product detailsni olishda xatolik:', error);
       }
     };
 
     fetchProduct();
   }, [id]);
 
+  const productPrice = product?.price ? parseFloat(product.price) : 0;
+
   const displayedPrice =
-    product && currency === 'USD'
-      ? `$${(product.price ?? 0)}` 
-      : `${((product?.price ?? 0) * conversionRate).toFixed(2)} so'm`;
+    currency === 'USD'
+      ? `$${productPrice.toFixed(2)}` 
+      : `${(productPrice * conversionRate).toFixed(2)} so'm`;
 
   const handleCurrencyChange = (newCurrency: string) => {
     dispatch(changeCurrency(newCurrency));
   };
 
   if (!product) {
-    return <div className="single-loading">Loading...</div>; 
+    return <div className="single-loading">Yuklanmoqda...</div>; 
   }
 
   return (
